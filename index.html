@@ -1,24 +1,25 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
-    <link rel="stylesheet" href="Style/style.css">
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <base href="/Portfolio/">
-
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio</title>
+  <link rel="stylesheet" href="Style/style.css" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
 <body>
   <header>
     <div class="menu-toggle" id="menuToggle">&#9776;</div>
-    <nav class="menu">
+    <nav class="menu" id="menu">
       <ul>
         <li><a href="#">Inicio</a></li>
         <li><a href="#skill">Habilidade</a></li>
         <li><a href="#aboutme">Sobre mim</a></li>
         <li><a href="#projeto">Projetos</a></li>
+      </ul>
+      <ul class="social-links">
+        <li><a href="https://www.linkedin.com/in/afonso-fagundes-804353146/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+        <li><a href="https://github.com/AfonsoFagundes" target="_blank" rel="noopener noreferrer">GitHub</a></li>
       </ul>
     </nav>
   </header>
@@ -27,11 +28,13 @@
     <section class="introduction">
       <h1>Olá, Meu nome é</h1>
       <h2>Afonso Fagundes</h2>
-      <p class="texto-intro">Sou um desenvolvedor web apaixonado por criar experiências incríveis na web.</p>
+      <p class="texto-intro">
+        Sou um desenvolvedor web apaixonado por criar experiências incríveis na web.
+      </p>
     </section>
 
     <div id="image-container">
-      <img src="image/coding.png" alt="boy coding" class="img-coding">
+      <img src="image/coding.png" alt="boy coding" class="img-coding" />
     </div>
 
     <h2 id="skill">Habilidades</h2>
@@ -39,104 +42,162 @@
       <div class="skill-box">
         <div class="skill-title">
           <div class="img">
-            <img src="image/html.png" alt="HTML" class="skill-img" data-aos="fade-right">
+            <img src="image/html.png" alt="HTML" class="skill-img" data-aos="fade-right" />
           </div>
           <h3>HTML 5</h3>
-          <p>HTML é a linguagem de marcação padrão para criar páginas da web.</p>
+          <p>
+            HTML é a linguagem de marcação padrão para criar páginas da web.
+          </p>
         </div>
       </div>
 
       <div class="skill-box">
         <div class="skill-title">
           <div class="img">
-            <img src="image/script-java.png" alt="JavaScript" class="skill-img" data-aos="fade-right">
+            <img src="image/script-java.png" alt="JavaScript" class="skill-img" data-aos="fade-right" />
           </div>
           <h3>JavaScript</h3>
-          <p>JavaScript é uma linguagem de programação que permite implementar funcionalidades complexas em páginas da web.</p>
+          <p>
+            JavaScript é uma linguagem de programação que permite implementar funcionalidades complexas em páginas da web.
+          </p>
         </div>
       </div>
 
       <div class="skill-box">
         <div class="skill-title">
           <div class="img">
-            <img src="image/css-3.png" alt="CSS" class="skill-img" data-aos="fade-right">
+            <img src="image/css-3.png" alt="CSS" class="skill-img" data-aos="fade-right" />
           </div>
           <h3>CSS 3</h3>
-          <p>CSS é uma linguagem de estilo usada para descrever a apresentação de um documento escrito em HTML ou XML.</p>
+          <p>
+            CSS é uma linguagem de estilo usada para descrever a apresentação de um documento escrito em HTML ou XML.
+          </p>
         </div>
       </div>
 
       <div class="skill-box">
         <div class="skill-title">
           <div class="img">
-            <img src="image/java.png" alt="Java" class="skill-img" data-aos="fade-right">
+            <img src="image/java.png" alt="Java" class="skill-img" data-aos="fade-right" />
           </div>
           <h3>Java</h3>
-          <p>Java é uma linguagem de programação de propósito geral, orientada a objetos e baseada em classes.</p>
+          <p>
+            Java é uma linguagem de programação de propósito geral, orientada a objetos e baseada em classes.
+          </p>
         </div>
       </div>
 
       <div class="skill-box">
         <div class="skill-title">
           <div class="img">
-            <img src="image/mysql.png" alt="MySQL" class="skill-img" data-aos="fade-right">
+            <img src="image/mysql.png" alt="MySQL" class="skill-img" data-aos="fade-right" />
           </div>
           <h3>MySQL</h3>
-          <p>MySQL é um sistema de gerenciamento de banco de dados relacional (RDBMS) de código aberto.</p>
-        </div>
-      </div>
-
-    </div> <!-- fecha skill-container -->
-
-    <!-- sobre mim -->
-    <div id="aboutme" class="sobremim-container">
-      <div class="minhafoto">
-         <img class="minhafoto" src="image/minha-foto.png" alt="foto-do-dev"  data-aos="fade-left" data-aos-delay="0" data-aos-duration="800">
-      </div>
-      <div class="sobre-mim">
-        <div class="sobremim-texto">
-          <h2 data-aos="fade-right" data-oas-delay="0" data-oas-duraction="800"> Sobre mim</h2>
-            <p data-aos="fade-left" data-aos-delay="400" data-aos-duration="800">
-               Meu nome é Afonso, sempre fui apaixonado por tecnologia e por desafios que despertam minha criatividade.  
-  <br> Atualmente, estou me especializando em criar páginas web chamativas, que unam bom design e uma ótima experiência para o usuário.  
-  <br> Tenho trabalhado em projetos da faculdade e também em alguns pessoais, sempre buscando aprender na prática e melhorar minhas habilidades.  
-  <br> Estou aberto a novas ideias, parcerias e desafios que me ajudem a crescer cada vez mais na área.
+          <p>
+            MySQL é um sistema de gerenciamento de banco de dados relacional (RDBMS) de código aberto.
+          </p>
         </div>
       </div>
     </div>
 
-     <!--Projetos-->
-     <h2 id="projeto" class="h2-projeto">Projetos</h2>
+    <!-- sobre mim -->
+    <div id="aboutme" class="sobremim-container">
+      <div class="minhafoto">
+        <img
+          class="minhafoto"
+          src="image/minha-foto.png"
+          alt="foto-do-dev"
+          data-aos="fade-left"
+          data-aos-delay="0"
+          data-aos-duration="800"
+        />
+      </div>
+      <div class="sobre-mim">
+        <div class="sobremim-texto">
+          <h2 data-aos="fade-right" data-oas-delay="0" data-oas-duraction="800">
+            Sobre mim
+          </h2>
+          <p data-aos="fade-left" data-aos-delay="400" data-aos-duration="800">
+            Meu nome é Afonso, sempre fui apaixonado por tecnologia e por desafios que despertam minha criatividade.
+            <br />
+            Atualmente, estou me especializando em criar páginas web chamativas, que unam bom design e uma ótima experiência para o usuário.
+            <br />
+            Tenho trabalhado em projetos da faculdade e também em alguns pessoais, sempre buscando aprender na prática e melhorar minhas habilidades.
+            <br />
+            Estou aberto a novas ideias, parcerias e desafios que me ajudem a crescer cada vez mais na área.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!--Projetos-->
+    <h2 id="projeto" class="h2-projeto">Projetos</h2>
     <div class="projetos-container">
       <div class="projeto">
-        <img class="embreve-img" src="image/embreve.png" alt="em-breve" data-aos="fade-right" data-aos-delay="0" data-aos-duration="800">
+        <img
+          class="embreve-img"
+          src="image/embreve.png"
+          alt="em-breve"
+          data-aos="fade-right"
+          data-aos-delay="0"
+          data-aos-duration="800"
+        />
         <div class="projeto-texto">
-        <h3 data-aos="fade-left" data-aos-delay="200" data-aos-duration="800">Projeto 1</h3>
-        <p>Descrição do projeto 1.</p>
+          <h3 data-aos="fade-left" data-aos-delay="200" data-aos-duration="800">
+            Projeto 1
+          </h3>
+          <p>Descrição do projeto 1.</p>
         </div>
       </div>
       <div class="projeto">
-         <img class="embreve-img" src="image/embreve.png" alt="em-breve" data-aos="fade-left" data-aos-delay="200" data-aos-duration="800">
-       <div class="projeto-texto">
-        <h3 data-aos="fade-left" data-aos-delay="200" data-aos-duration="800">Projeto 2</h3>
-        <p>Descrição do projeto 2.</p>
+        <img
+          class="embreve-img"
+          src="image/embreve.png"
+          alt="em-breve"
+          data-aos="fade-left"
+          data-aos-delay="200"
+          data-aos-duration="800"
+        />
+        <div class="projeto-texto">
+          <h3 data-aos="fade-left" data-aos-delay="200" data-aos-duration="800">
+            Projeto 2
+          </h3>
+          <p>Descrição do projeto 2.</p>
         </div>
       </div>
       <div class="projeto">
-         <img class="embreve-img" src="image/embreve.png" alt="em-breve" data-aos="fade-right"  data-aos-delay="400" data-aos-duration="800">
-       <div class="projeto-texto">
-        <h3 data-aos="fade-left" data-aos-delay="200" data-aos-duration="800">Projeto 3</h3>
-        <p>Descrição do projeto 3.</p>
+        <img
+          class="embreve-img"
+          src="image/embreve.png"
+          alt="em-breve"
+          data-aos="fade-right"
+          data-aos-delay="400"
+          data-aos-duration="800"
+        />
+        <div class="projeto-texto">
+          <h3 data-aos="fade-left" data-aos-delay="200" data-aos-duration="800">
+            Projeto 3
+          </h3>
+          <p>Descrição do projeto 3.</p>
         </div>
       </div>
     </div>
   </main>
 
   <!-- JS do AOS -->
-<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-<script>
-  AOS.init();
-</script>
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
 
+  <!-- JS para menu toggle -->
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const menu = document.getElementById('menu');
+
+    menuToggle.addEventListener('click', () => {
+      menu.classList.toggle('active');
+    });
+  </script>
 </body>
 </html>
