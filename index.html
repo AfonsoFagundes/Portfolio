@@ -9,7 +9,11 @@
 </head>
 <body>
   <header>
-    <div class="menu-toggle" id="menuToggle">&#9776;</div>
+    <div class="menu-toggle" id="menuToggle">&#9776;
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
     <div id="language-switcher">
       <button id="toggleLang">EN</button>
     </div>
@@ -125,8 +129,7 @@
            </br> Tenho trabalhado em projetos da faculdade e também em alguns pessoais, sempre buscando aprender na prática e melhorar minhas habilidades.
            </br> Estou aberto a novas ideias, parcerias e desafios que me ajudem a crescer cada vez mais na área."
            data-en="My name is Afonso, and I’ve always been passionate about technology and challenges that spark my creativity. 
-          </br> I am currently specializing in creating eye-catching web pages that combine good design and great user experience. </br> I've been working on college and personal projects, always seeking to learn in practice and improve my skills. 
-        </br> I'm open to new ideas, partnerships, and challenges that help me grow further in the field.">
+          </br> I am currently specializing in creating eye-catching web pages that combine good design and great user experience. </br> I've been working on college and personal projects, always seeking to learn in practice and improve my skills. </br>  I'm open to new ideas, partnerships, and challenges that help me grow further in the field.">
             
           </p>
         </div>
@@ -164,38 +167,26 @@
     AOS.init();
   </script>
 
-  <script>
-    const menuToggle = document.getElementById('menuToggle');
-    const menu = document.getElementById('menu');
-    const contatoDropdown = document.querySelector('.dropdown > a');
-    const dropdownParent = contatoDropdown?.parentElement;
+<script>
+  
+  const menuToggle = document.getElementById('menuToggle');
+  const menu = document.getElementById('menu');
 
-    menuToggle.addEventListener('click', () => {
-      menu.classList.toggle('active');
-    });
+  menuToggle.addEventListener('click', () => {
+    menu.classList.toggle('active');
+    menuToggle.classList.toggle('open');
+  });
 
-    contatoDropdown?.addEventListener('click', function (e) {
-      if (window.innerWidth <= 768) {
-        e.preventDefault(); 
-        dropdownParent.classList.toggle('show'); 
-      }
-    });
+  const contatoDropdown = document.querySelector('.dropdown > a');
+  const dropdownParent = contatoDropdown?.parentElement;
 
-      // Troca de idioma
-const langButton = document.getElementById("toggleLang");
-let currentLang = "pt";
-
-langButton.addEventListener("click", () => {
-  currentLang = currentLang === "pt" ? "en" : "pt";
-  langButton.textContent = currentLang === "pt" ? "EN" : "PT";
-
-  document.querySelectorAll("[data-en]").forEach((el) => {
-    const text = el.getAttribute(`data-${currentLang}`);
-    if (text) {
-      el.innerHTML = text; // Usando innerHTML para permitir <br> e outras tags
+  contatoDropdown?.addEventListener('click', function (e) {
+    if (window.innerWidth <= 768) {
+      e.preventDefault(); 
+      dropdownParent.classList.toggle('show');
     }
   });
-});
-  </script>
+</script>
+
 </body>
 </html>

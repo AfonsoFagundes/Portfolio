@@ -146,15 +146,43 @@ header {
 
 /*MENU HUMBURGER*/
 .menu-toggle {
-  display: none;
-  font-size: 2.5rem;
-  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 25px;
   position: fixed;
-  color: white;
   top: 15px;
   right: 20px;
   z-index: 1500;
+  cursor: pointer;
+  gap: 10px; /* <-- AQUI define o espaçamento */
 }
+
+.menu-toggle span {
+  display: block;
+  height: 5px;
+  width: 100%;
+  background: white;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+
+/* Animação quando o menu estiver aberto */
+.menu-toggle.open span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-toggle.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
 
 /* INTRODUÇAO */
 section {
