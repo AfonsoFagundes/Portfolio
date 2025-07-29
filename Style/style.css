@@ -13,8 +13,8 @@ body {
 
 body {
   background: linear-gradient(to right, #000000, #434343);
-  padding-top: 100px; /* Altura do header */
-  padding-bottom: 80px; /* Altura do footer */
+  padding-top: 100px; 
+  padding-bottom: 80px; 
 }
 
 header {
@@ -29,6 +29,28 @@ header {
   position: fixed;
   top: 0;
   left: 0;
+}
+
+#language-switcher {
+  position: fixed;
+  top: 18px;
+  left: 20px;
+  z-index: 1600;
+}
+
+#language-switcher button {
+  background-color: transparent;
+  color: white;
+  border: 1px solid white;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 0.9rem;
+}
+
+#language-switcher button:hover {
+  background-color: white;
+  color: black;
 }
 
 .menu {
@@ -70,6 +92,58 @@ header {
   z-index: 10px;
 }
 
+.dropdown {
+  position: relative;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: rgba(2, 85, 2, 0.95);
+  border-radius: 8px;
+  top: 100%;
+  left: 0;
+  min-width: 160px;
+  z-index: 1001;
+  flex-direction: column;
+  gap: 10px; 
+  padding: 10px 0;
+}
+
+.dropdown-content li {
+  display: block;
+  margin: 0; 
+}
+
+.dropdown-content li a {
+  display: block;
+  padding: 10px;
+  color: white; 
+  
+}
+
+.dropdown-content li a:hover {
+  background-color: darkgreen;
+}
+
+.dropdown:hover .dropdown-content {
+  display: flex;
+}
+
+@media (max-width: 768px) {
+  .dropdown-content {
+    position: static;
+    background: none;
+    box-shadow: none;
+  }
+
+.dropdown.show .dropdown-content {
+  display: block;
+  }
+}
+
+
+
 /*MENU HUMBURGER*/
 .menu-toggle {
   display: none;
@@ -104,7 +178,7 @@ h1 {
   display: flex;
   position: relative;
   margin-top: 50px;
-  top: 30px;
+  top: 35px;
   color: #fff;
 }
 
@@ -209,8 +283,8 @@ h1 {
 }
 
 .sobremim-container {
-  min-height: 100vh; /* Ocupa a tela inteira (viewport) */
-  padding: 60px 20px; /* Espaçamento interno */
+  min-height: 100vh; 
+  padding: 60px 20px; 
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -322,7 +396,7 @@ html {
     display: block;
   }
 
-  /* Esconde menu padrão */
+
   .menu {
     display: none;
     flex-direction: column;
@@ -341,14 +415,13 @@ html {
     display: flex;
   }
 
-  /* Menu links em coluna */
   .menu ul {
     flex-direction: column;
     gap: 15px;
     padding-left: 0;
   }
 
-  /* Redes sociais visíveis */
+  
   .social-links {
     display: flex;
     flex-direction: column;
@@ -357,7 +430,7 @@ html {
     padding-top: 20px;
   }
 
-  /* Ajuste links do menu */
+  
   .menu a {
     padding: 10px;
     background-color: transparent;
@@ -365,7 +438,7 @@ html {
     border-radius: 0;
   }
 
-  /* Ajusta introdução e textos para telas pequenas */
+
   section {
     padding: 0 15px;
     margin-bottom: 60px;
@@ -384,7 +457,7 @@ html {
     font-size: 16px;
   }
 
-  /* Ajusta o skill container para 1 coluna */
+  
   .skill-container {
     grid-template-columns: 1fr;
     padding: 2rem 15px;
@@ -401,7 +474,6 @@ html {
     margin-bottom: 20px;
   }
 
-  /* Ajusta imagem e textos da seção Sobre mim */
   .sobremim-container {
     padding: 20px 15px;
   }

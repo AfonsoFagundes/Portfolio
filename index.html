@@ -10,25 +10,31 @@
 <body>
   <header>
     <div class="menu-toggle" id="menuToggle">&#9776;</div>
+    <div id="language-switcher">
+      <button id="toggleLang">EN</button>
+    </div>
     <nav class="menu" id="menu">
       <ul>
-        <li><a href="#">Inicio</a></li>
-        <li><a href="#skill">Habilidade</a></li>
-        <li><a href="#aboutme">Sobre mim</a></li>
-        <li><a href="#projeto">Projetos</a></li>
-      </ul>
-      <ul class="social-links">
-        <li><a href="https://www.linkedin.com/in/afonso-fagundes-804353146/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-        <li><a href="https://github.com/AfonsoFagundes" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        <li><a href="#" data-pt="Início" data-en="Home">Início</a></li>
+        <li><a href="#skill" data-pt="Habilidade" data-en="Skills">Habilidade</a></li>
+        <li><a href="#aboutme" data-pt="Sobre mim" data-en="About Me">Sobre mim</a></li>
+        <li><a href="#projeto" data-pt="Projetos" data-en="Projects">Projetos</a></li>
+        <li class="dropdown">
+          <a href="#" data-pt="Contato" data-en="Contact">Contato</a>
+          <div class="dropdown-content">
+            <a href="https://www.linkedin.com/in/afonso-fagundes-804353146/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="https://github.com/AfonsoFagundes" target="_blank" rel="noopener noreferrer">GitHub</a>
+          </div>
+        </li>
       </ul>
     </nav>
   </header>
 
   <main>
     <section class="introduction">
-      <h1>Olá, Meu nome é</h1>
+      <h1 data-pt="Olá, Meu nome é" data-en="Hello, my name is">Olá, Meu nome é</h1>
       <h2>Afonso Fagundes</h2>
-      <p class="texto-intro">
+      <p class="texto-intro" data-pt="Sou um desenvolvedor web apaixonado por criar experiências incríveis na web." data-en="I am a web developer passionate about creating amazing web experiences.">
         Sou um desenvolvedor web apaixonado por criar experiências incríveis na web.
       </p>
     </section>
@@ -37,7 +43,7 @@
       <img src="image/coding.png" alt="boy coding" class="img-coding" />
     </div>
 
-    <h2 id="skill">Habilidades</h2>
+    <h2 id="skill" data-pt="Habilidades" data-en="Skills">Habilidades</h2>
     <div class="skill-container">
       <div class="skill-box">
         <div class="skill-title">
@@ -45,7 +51,7 @@
             <img src="image/html.png" alt="HTML" class="skill-img" data-aos="fade-right" />
           </div>
           <h3>HTML 5</h3>
-          <p>
+          <p data-pt="HTML é a linguagem de marcação padrão para criar páginas da web." data-en="HTML is the standard markup language for creating web pages.">
             HTML é a linguagem de marcação padrão para criar páginas da web.
           </p>
         </div>
@@ -57,7 +63,7 @@
             <img src="image/script-java.png" alt="JavaScript" class="skill-img" data-aos="fade-right" />
           </div>
           <h3>JavaScript</h3>
-          <p>
+          <p data-pt="JavaScript é uma linguagem de programação que permite implementar funcionalidades complexas em páginas da web." data-en="JavaScript is a programming language that allows implementing complex features on web pages.">
             JavaScript é uma linguagem de programação que permite implementar funcionalidades complexas em páginas da web.
           </p>
         </div>
@@ -69,7 +75,7 @@
             <img src="image/css-3.png" alt="CSS" class="skill-img" data-aos="fade-right" />
           </div>
           <h3>CSS 3</h3>
-          <p>
+          <p data-pt="CSS é uma linguagem de estilo usada para descrever a apresentação de um documento escrito em HTML ou XML." data-en="CSS is a stylesheet language used to describe the presentation of an HTML or XML document.">
             CSS é uma linguagem de estilo usada para descrever a apresentação de um documento escrito em HTML ou XML.
           </p>
         </div>
@@ -81,7 +87,7 @@
             <img src="image/java.png" alt="Java" class="skill-img" data-aos="fade-right" />
           </div>
           <h3>Java</h3>
-          <p>
+          <p data-pt="Java é uma linguagem de programação de propósito geral, orientada a objetos e baseada em classes." data-en="Java is a general-purpose, object-oriented, class-based programming language.">
             Java é uma linguagem de programação de propósito geral, orientada a objetos e baseada em classes.
           </p>
         </div>
@@ -93,14 +99,13 @@
             <img src="image/mysql.png" alt="MySQL" class="skill-img" data-aos="fade-right" />
           </div>
           <h3>MySQL</h3>
-          <p>
+          <p data-pt="MySQL é um sistema de gerenciamento de banco de dados relacional (RDBMS) de código aberto." data-en="MySQL is an open-source relational database management system (RDBMS).">
             MySQL é um sistema de gerenciamento de banco de dados relacional (RDBMS) de código aberto.
           </p>
         </div>
       </div>
     </div>
 
-    <!-- sobre mim -->
     <div id="aboutme" class="sobremim-container">
       <div class="minhafoto">
         <img
@@ -114,90 +119,83 @@
       </div>
       <div class="sobre-mim">
         <div class="sobremim-texto">
-          <h2 data-aos="fade-right" data-oas-delay="0" data-oas-duraction="800">
-            Sobre mim
-          </h2>
-          <p data-aos="fade-left" data-aos-delay="400" data-aos-duration="800">
-            Meu nome é Afonso, sempre fui apaixonado por tecnologia e por desafios que despertam minha criatividade.
-            <br />
-            Atualmente, estou me especializando em criar páginas web chamativas, que unam bom design e uma ótima experiência para o usuário.
-            <br />
-            Tenho trabalhado em projetos da faculdade e também em alguns pessoais, sempre buscando aprender na prática e melhorar minhas habilidades.
-            <br />
-            Estou aberto a novas ideias, parcerias e desafios que me ajudem a crescer cada vez mais na área.
+          <h2 data-aos="fade-right" data-oas-delay="0" data-oas-duraction="800" data-pt="Sobre mim" data-en="About me">Sobre mim</h2>
+          <p data-aos="fade-left" data-aos-delay="400" data-aos-duration="800" data-pt="Meu nome é Afonso, sempre fui apaixonado por tecnologia e por desafios que despertam minha criatividade. 
+        </br> Atualmente, estou me especializando em criar páginas web chamativas, que unam bom design e uma ótima experiência para o usuário.
+           </br> Tenho trabalhado em projetos da faculdade e também em alguns pessoais, sempre buscando aprender na prática e melhorar minhas habilidades.
+           </br> Estou aberto a novas ideias, parcerias e desafios que me ajudem a crescer cada vez mais na área."
+           data-en="My name is Afonso, and I’ve always been passionate about technology and challenges that spark my creativity. 
+          </br> I am currently specializing in creating eye-catching web pages that combine good design and great user experience. </br> I've been working on college and personal projects, always seeking to learn in practice and improve my skills. 
+        </br> I'm open to new ideas, partnerships, and challenges that help me grow further in the field.">
+            
           </p>
         </div>
       </div>
     </div>
 
-    <!--Projetos-->
-    <h2 id="projeto" class="h2-projeto">Projetos</h2>
+    <h2 id="projeto" class="h2-projeto" data-pt="Projetos" data-en="Projects">Projetos</h2>
     <div class="projetos-container">
       <div class="projeto">
-        <img
-          class="embreve-img"
-          src="image/embreve.png"
-          alt="em-breve"
-          data-aos="fade-right"
-          data-aos-delay="0"
-          data-aos-duration="800"
-        />
+        <img class="embreve-img" src="image/embreve.png" alt="em-breve" data-aos="fade-right" data-aos-delay="0" data-aos-duration="800" />
         <div class="projeto-texto">
-          <h3 data-aos="fade-left" data-aos-delay="200" data-aos-duration="800">
-            Projeto 1
-          </h3>
-          <p>Descrição do projeto 1.</p>
+          <h3 data-pt="Projeto 1" data-en="Project 1">Projeto 1</h3>
+          <p data-pt="Descrição do projeto 1." data-en="Description of project 1.">Descrição do projeto 1.</p>
         </div>
       </div>
       <div class="projeto">
-        <img
-          class="embreve-img"
-          src="image/embreve.png"
-          alt="em-breve"
-          data-aos="fade-left"
-          data-aos-delay="200"
-          data-aos-duration="800"
-        />
+        <img class="embreve-img" src="image/embreve.png" alt="em-breve" data-aos="fade-left" data-aos-delay="200" data-aos-duration="800" />
         <div class="projeto-texto">
-          <h3 data-aos="fade-left" data-aos-delay="200" data-aos-duration="800">
-            Projeto 2
-          </h3>
-          <p>Descrição do projeto 2.</p>
+          <h3 data-pt="Projeto 2" data-en="Project 2">Projeto 2</h3>
+          <p data-pt="Descrição do projeto 2." data-en="Description of project 2.">Descrição do projeto 2.</p>
         </div>
       </div>
       <div class="projeto">
-        <img
-          class="embreve-img"
-          src="image/embreve.png"
-          alt="em-breve"
-          data-aos="fade-right"
-          data-aos-delay="400"
-          data-aos-duration="800"
-        />
+        <img class="embreve-img" src="image/embreve.png" alt="em-breve" data-aos="fade-right" data-aos-delay="400" data-aos-duration="800" />
         <div class="projeto-texto">
-          <h3 data-aos="fade-left" data-aos-delay="200" data-aos-duration="800">
-            Projeto 3
-          </h3>
-          <p>Descrição do projeto 3.</p>
+          <h3 data-pt="Projeto 3" data-en="Project 3">Projeto 3</h3>
+          <p data-pt="Descrição do projeto 3." data-en="Description of project 3.">Descrição do projeto 3.</p>
         </div>
       </div>
     </div>
   </main>
 
-  <!-- JS do AOS -->
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <script>
     AOS.init();
   </script>
 
-  <!-- JS para menu toggle -->
   <script>
     const menuToggle = document.getElementById('menuToggle');
     const menu = document.getElementById('menu');
+    const contatoDropdown = document.querySelector('.dropdown > a');
+    const dropdownParent = contatoDropdown?.parentElement;
 
     menuToggle.addEventListener('click', () => {
       menu.classList.toggle('active');
     });
+
+    contatoDropdown?.addEventListener('click', function (e) {
+      if (window.innerWidth <= 768) {
+        e.preventDefault(); 
+        dropdownParent.classList.toggle('show'); 
+      }
+    });
+
+      // Troca de idioma
+const langButton = document.getElementById("toggleLang");
+let currentLang = "pt";
+
+langButton.addEventListener("click", () => {
+  currentLang = currentLang === "pt" ? "en" : "pt";
+  langButton.textContent = currentLang === "pt" ? "EN" : "PT";
+
+  document.querySelectorAll("[data-en]").forEach((el) => {
+    const text = el.getAttribute(`data-${currentLang}`);
+    if (text) {
+      el.innerHTML = text; // Usando innerHTML para permitir <br> e outras tags
+    }
+  });
+});
   </script>
 </body>
 </html>
