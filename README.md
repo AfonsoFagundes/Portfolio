@@ -1,51 +1,32 @@
-# 💼 Portfólio - Afonso Fagundes
+# ⚠️ Em Desenvolvimento
 
-Este é meu portfólio pessoal como desenvolvedor Front-End, onde apresento meus projetos, habilidades e informações de contato de forma moderna e responsiva.
+Este repositório está em fase de desenvolvimento.
 
-🔗 Acesse aqui: [afonsofagundes.github.io/Portfolio](https://afonsofagundes.github.io/Portfolio/)
-
----
-
-## ✨ Sobre
-
-O portfólio foi criado com foco em desempenho, responsividade e clareza visual. É uma vitrine profissional dos meus conhecimentos em desenvolvimento web, com seções de introdução, habilidades, projetos e formas de contato.
+Atualmente, o código principal do projeto está sendo construído na branch [`feature2`](https://github.com/afonsofagundes/Portfolio/tree/feature2).
 
 ---
 
-## ⚙️ Tecnologias utilizadas
+## 🚧 Situação atual
 
-- HTML5
-- CSS3
-- JavaScript
-- Git & GitHub
-
----
-
-## 📸 Demonstração
-
-![Demonstração do Portfólio](https://afonsofagundes.github.io/Portfolio/assets/image/screenshot.png)  
-*Exemplo ilustrativo — substitua pelo caminho correto da imagem do seu portfólio*
+- A branch `main` ainda **não possui o projeto finalizado**
+- Todo o desenvolvimento está sendo feito na branch `feature2`
+- Após a finalização, o conteúdo será mesclado com a `main` e o deploy será atualizado
 
 ---
 
-## 📲 Funcionalidades
+## 🔗 Branch de desenvolvimento
 
-- Layout 100% responsivo
-- Tema escuro/claro com botão toggle
-- Sessão "Sobre mim" com troca de idioma
-- Apresentação de projetos com links
-- Contato com ícones de redes sociais
+Acesse a branch `feature2` para ver o progresso do projeto:
 
 ---
 
-## 🛠️ Como rodar localmente
+## 📅 Última atualização
 
-```bash
-# Clone o repositório
-git clone https://github.com/afonsofagundes/Portfolio.git
+> Atualizado em: **30 de julho de 2025**
 
-# Acesse a pasta do projeto
-cd Portfolio
+---
 
-# Abra o arquivo index.html no seu navegador
+## 📬 Contato
 
+- [LinkedIn](https://www.linkedin.com/in/afonsofagundes)
+- [GitHub](https://github.com/afonsofagundes)
