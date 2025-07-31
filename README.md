@@ -29,7 +29,7 @@ Este é meu portfólio pessoal como desenvolvedor Front-End. O objetivo é apres
 
 ## 🖼️ Demonstração
 
-![Screenshot do portfólio](image/screenshot.png)
+![Screenshot do portfólio](src/assets/images/screenshot.png)
 
 ---
 
