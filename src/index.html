@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Portfolio</title>
-    <link rel="stylesheet" href="Style/style.css" />
+    <link rel="stylesheet" href="/src/css/style.css" />
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   </head>
   <body>
@@ -75,7 +75,11 @@
       </section>
 
       <div id="image-container">
-        <img src="image/coding.png" alt="boy coding" class="img-coding" />
+        <img
+          src="/src/assets/images/coding.png"
+          alt="boy coding"
+          class="img-coding"
+        />
       </div>
 
       <h2 id="skill" data-pt="Habilidades" data-en="Skills">Habilidades</h2>
@@ -84,7 +88,7 @@
           <div class="skill-title">
             <div class="img">
               <img
-                src="image/html.png"
+                src="/src/assets/images/html.png"
                 alt="HTML"
                 class="skill-img"
                 data-aos="fade-right"
@@ -104,7 +108,7 @@
           <div class="skill-title">
             <div class="img">
               <img
-                src="image/script-java.png"
+                src="/src/assets/images/script-java.png"
                 alt="JavaScript"
                 class="skill-img"
                 data-aos="fade-right"
@@ -125,7 +129,7 @@
           <div class="skill-title">
             <div class="img">
               <img
-                src="image/css-3.png"
+                src="/src/assets/images/css-3.png"
                 alt="CSS"
                 class="skill-img"
                 data-aos="fade-right"
@@ -146,7 +150,7 @@
           <div class="skill-title">
             <div class="img">
               <img
-                src="image/java.png"
+                src="/src/assets/images/java.png"
                 alt="Java"
                 class="skill-img"
                 data-aos="fade-right"
@@ -167,7 +171,7 @@
           <div class="skill-title">
             <div class="img">
               <img
-                src="image/mysql.png"
+                src="/src/assets/images/mysql.png"
                 alt="MySQL"
                 class="skill-img"
                 data-aos="fade-right"
@@ -189,7 +193,7 @@
         <div class="minhafoto">
           <img
             class="minhafoto"
-            src="image/minha-foto.png"
+            src="/src/assets/images/minha-foto.png"
             alt="foto-do-dev"
             data-aos="fade-left"
             data-aos-delay="0"
@@ -231,7 +235,7 @@
         <div class="projeto">
           <img
             class="embreve-img"
-            src="image/embreve.png"
+            src="/src/assets/images/embreve.png"
             alt="em-breve"
             data-aos="fade-right"
             data-aos-delay="0"
@@ -250,7 +254,7 @@
         <div class="projeto">
           <img
             class="embreve-img"
-            src="image/embreve.png"
+            src="/src/assets/images/embreve.png"
             alt="em-breve"
             data-aos="fade-left"
             data-aos-delay="200"
@@ -269,7 +273,7 @@
         <div class="projeto">
           <img
             class="embreve-img"
-            src="image/embreve.png"
+            src="/src/assets/images/embreve.png"
             alt="em-breve"
             data-aos="fade-right"
             data-aos-delay="400"
@@ -287,45 +291,12 @@
         </div>
       </div>
     </main>
-
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
       AOS.init();
     </script>
-
-    <script>
-      const menuToggle = document.getElementById("menuToggle");
-      const menu = document.getElementById("menu");
-
-      menuToggle.addEventListener("click", () => {
-        menu.classList.toggle("active");
-        menuToggle.classList.toggle("open");
-      });
-
-      const contatoDropdown = document.querySelector(".dropdown > a");
-      const dropdownParent = contatoDropdown?.parentElement;
-
-      contatoDropdown?.addEventListener("click", function (e) {
-        if (window.innerWidth <= 768) {
-          e.preventDefault();
-          dropdownParent.classList.toggle("show");
-        }
-      });
-
-      const toggleLang = document.getElementById("toggleLang");
-      let languageSwitcher = true; // true = pt, false = en
-
-      toggleLang.addEventListener("click", () => {
-        languageSwitcher = !languageSwitcher;
-
-        const elements = document.querySelectorAll("[data-pt][data-en]");
-
-        elements.forEach((el) => {
-          el.innerHTML = languageSwitcher ? el.dataset.pt : el.dataset.en;
-        });
-
-        toggleLang.innerHTML = languageSwitcher ? "EN" : "PT";
-      });
-    </script>
+    <script src="/src/js/menuToggle.js"></script>
+    <script src="/src/js/dropDown.js"></script>
+    <script src="/src/js/toggleLanguage.js"></script>
   </body>
 </html>
