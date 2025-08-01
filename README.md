@@ -22,7 +22,7 @@ Acesse a branch `feature2` para ver o progresso do projeto:
 
 ## 📅 Última atualização
 
-> Atualizado em: **30 de julho de 2025**
+> Atualizado em: **31 de julho de 2025**
 
 ---
 
