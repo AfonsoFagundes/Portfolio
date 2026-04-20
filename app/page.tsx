@@ -1,452 +1,1212 @@
-"use client"
-import { useState, useEffect, useRef } from "react"
-import { motion, useScroll, useTransform, useInView, AnimatePresence } from "framer-motion"
-import { MessageCircle, ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react"
-import Navbar from "@/components/ui/NavBar"
+"use client";
 
-const easeOut = [0.16, 1, 0.3, 1] as const
+import { useState, useEffect, useRef } from "react";
+import {
+  motion,
+  AnimatePresence,
+  useScroll,
+  useTransform,
+} from "framer-motion";
+import {
+  MessageCircle,
+  ArrowUpRight,
+  Code2,
+  Globe,
+  Zap,
+  Menu,
+  X,
+  Mail,
+  Phone,
+  ChevronDown,
+  Star,
+  Monitor,
+  Smartphone,
+  Database,
+  Server,
+  Layers,
+  Bot,
+} from "lucide-react";
+import type { Variants } from "framer-motion";
+import Image from "next/image";
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 32, filter: "blur(6px)" },
-  show: (i = 0) => ({
-    opacity: 1, y: 0, filter: "blur(0px)",
-    transition: { duration: 0.7, ease: easeOut, delay: i * 0.12 }
-  })
-}
-
-const projects = [
-  {
-    tag: "Clínica estética",
-    label: "Landing page para clínica estética em SP",
-    accent: "#7c3aed",
-    bg: "from-purple-950/30 to-black",
-    domain: "clinica-bella.com.br",
-    title: "Clínica Bella Estética",
-    sub: "Transformando sua beleza com tecnologia",
-    cta: "Agendar consulta",
-    services: ["✨ Harmonização", "💎 Bioestimulação", "🌿 Skincare"],
-  },
-  {
-    tag: "Escritório de advocacia",
-    label: "Site institucional para advogado em Florianópolis",
-    accent: "#d4a017",
-    bg: "from-yellow-950/20 to-black",
-    domain: "advsilva.com.br",
-    title: "Dr. Rafael Silva",
-    sub: "Advocacia empresarial e trabalhista",
-    cta: "Consulta gratuita",
-    services: ["⚖️ Trabalhista", "🏢 Empresarial", "📜 Contratos"],
-  },
-  {
-    tag: "Restaurante & delivery",
-    label: "Sistema digital + automação para pizzaria em SC",
-    accent: "#ea580c",
-    bg: "from-orange-950/30 to-black",
-    domain: "pizzaria-nona.com.br",
-    title: "Pizzaria da Nona",
-    sub: "Forno a lenha desde 1978",
-    cta: "Pedir agora",
-    services: ["🍕 Cardápio digital", "⚡ Delivery", "💬 WhatsApp"],
-  },
-]
-
-const stats = [
-  { value: 47, suffix: "", label: "projetos entregues" },
-  { value: 100, suffix: "%", label: "satisfação" },
-  { value: 3, suffix: "x", label: "mais leads em média" },
-  { value: 24, suffix: "h", label: "suporte ativo" },
-]
-
-// Reusable counter hook
-function useCounter(target: number, inView: boolean) {
-  const [count, setCount] = useState(0)
-  useEffect(() => {
-    if (!inView) return
-    let start: number
-    const duration = 1400
-    const tick = (now: number) => {
-      if (!start) start = now
-      const p = Math.min((now - start) / duration, 1)
-      const eased = 1 - Math.pow(1 - p, 4)
-      setCount(Math.round(eased * target))
-      if (p < 1) requestAnimationFrame(tick)
-    }
-    requestAnimationFrame(tick)
-  }, [inView, target])
-  return count
-}
-
-function StatBox({ value, suffix, label }: { value: number; suffix: string; label: string }) {
-  const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: "-60px" })
-  const count = useCounter(value, inView)
+// ============================================================
+// 🔧 SUAS INFORMAÇÕES — edite apenas este bloco
+// ============================================================
+function Github({ className }: { className?: string }) {
   return (
-    <div ref={ref} className="bg-black py-7 text-center">
-      <div className="text-4xl font-semibold tracking-tight mb-1.5">{count}{suffix}</div>
-      <div className="text-sm text-neutral-500">{label}</div>
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+    </svg>
+  );
+}
+
+function Linkedin({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+    </svg>
+  );
+}
+const ME = {
+  nome: "Afonso Fagundes",
+  titulo: "Full Stack Developer",
+  cidade: "Santa Catarina, Brasil",
+  whatsapp: "5511947901270",
+  email: "afonsofagundes85@email.com",
+  github: "https://github.com/AfonsoFagundes",
+  linkedin: "https://linkedin.com/in/afonsofagundes",
+  bio: "Desenvolvo sites premium, landing pages de alta conversão e automações que trabalham por você 24 horas por dia. Combinando código limpo com design de nível internacional, entrego resultados reais para clínicas, escritórios, restaurantes e empresas de todo o Brasil.",
+  bio2: "Além de sites e landing pages, atuo como desenvolvedor Full Stack — construindo sistemas, APIs, dashboards e soluções digitais completas para empresas que querem crescer com tecnologia séria.",
+  stacks: [
+    { nome: "JavaScript", icon: "JS", cor: "#F7DF1E", bg: "#1a1800" },
+    { nome: "TypeScript", icon: "TS", cor: "#3178C6", bg: "#001229" },
+    { nome: "React", icon: "Re", cor: "#61DAFB", bg: "#001920" },
+    { nome: "Next.js", icon: "Nx", cor: "#ffffff", bg: "#1a1a1a" },
+    { nome: "Node.js", icon: "No", cor: "#68A063", bg: "#091400" },
+    { nome: "PostgreSQL", icon: "Pg", cor: "#336791", bg: "#000d1a" },
+    { nome: "API REST", icon: "Api", cor: "#9a7d4a", bg: "#1a1200" },
+    { nome: "HTML & CSS", icon: "HC", cor: "#E34F26", bg: "#1a0800" },
+  ],
+  servicos: [
+    {
+      icon: Globe,
+      titulo: "Sites Premium",
+      desc: "Sites profissionais com design de nível internacional que geram autoridade, confiança e clientes todos os dias. Resultado do primeiro acesso.",
+      itens: [
+        "Design exclusivo",
+        "Mobile-first",
+        "SEO otimizado",
+        "Alta velocidade",
+      ],
+      destaque: "Para qualquer nicho",
+    },
+    {
+      icon: Zap,
+      titulo: "Landing Pages",
+      desc: "Páginas focadas em uma única missão: converter visitantes em clientes. Copy persuasivo, hierarquia visual e CTAs que vendem.",
+      itens: [
+        "Copy de alto impacto",
+        "A/B testável",
+        "Integração WhatsApp",
+        "Analytics",
+      ],
+      destaque: "Foco em conversão",
+    },
+    {
+      icon: Bot,
+      titulo: "Automação WhatsApp",
+      desc: "Atendimento automático 24h que responde, qualifica e agenda seus clientes mesmo enquanto você dorme. Zero esforço manual.",
+      itens: [
+        "Respostas automáticas",
+        "Qualificação de leads",
+        "Agendamento online",
+        "Relatórios",
+      ],
+      destaque: "Vende no automático",
+    },
+    {
+      icon: Server,
+      titulo: "Desenvolvimento Full Stack",
+      desc: "Sistemas completos, APIs robustas, dashboards e aplicações web do zero. Código limpo, escalável e bem documentado.",
+      itens: ["APIs REST", "Banco de dados", "Autenticação", "Deploy em nuvem"],
+      destaque: "Software sob medida",
+    },
+    {
+      icon: Layers,
+      titulo: "Sites para Advogados",
+      desc: "Presença digital que transmite autoridade e credibilidade. Captura leads qualificados e agenda consultas de forma automática.",
+      itens: [
+        "Design elegante",
+        "SEO jurídico",
+        "Captação de leads",
+        "LGPD compliant",
+      ],
+      destaque: "Especialidade",
+    },
+    {
+      icon: Monitor,
+      titulo: "Sites para Clínicas",
+      desc: "Do consultório ao digital. Sites que atraem novos pacientes, geram agendamentos e posicionam sua clínica como referência.",
+      itens: [
+        "Agendamento online",
+        "Google Meu Negócio",
+        "Depoimentos",
+        "Resultados",
+      ],
+      destaque: "Especialidade",
+    },
+  ],
+  projetos: [
+    {
+      titulo: "Landing Page — Advocacia Premium",
+      desc: "Redesign completo com foco em captação de leads qualificados e autoridade jurídica.",
+      tags: ["Next.js", "Tailwind", "Framer Motion,", "React"],
+      cor: "#9a7d4a",
+      img: "/assets/templete-lawyer.png",
+      link: "https://lawyer-templete-pwwxj2drk-afonsofagundes85-5295s-projects.vercel.app/"
+    },
+    {
+      titulo: "Site Clínica Estética",
+      desc: "Site premium com agendamento integrado, galeria de resultados e captação automática via WhatsApp.",
+      tags: ["React", "Node.js", "PostgreSQL"],
+      cor: "#9a7d4a",
+      img: "/assets/projeto-2.jpg",
+    },
+    {
+      titulo: "Sistema de Gestão — Restaurante",
+      desc: "Cardápio digital, pedidos via WhatsApp e painel administrativo completo.",
+      tags: ["TypeScript", "API REST", "PostgreSQL"],
+      cor: "#9a7d4a",
+      img: "/assets/projeto-3.jpg",
+    },
+    {
+      titulo: "Automação de Atendimento",
+      desc: "Bot de WhatsApp com qualificação automática de leads e integração com CRM.",
+      tags: ["Node.js", "API REST", "Automação"],
+      cor: "#9a7d4a",
+      img: "/assets/projeto-4.jpg",
+    },
+  ],
+  depoimentos: [
+    {
+      texto:
+        "O Afonso entregou muito além do esperado. O site ficou incrível e já recebi vários clientes novos pelo WhatsApp na primeira semana.",
+      autor: "Dra. Fernanda Costa",
+      cargo: "Advogada — Florianópolis, SC",
+    },
+    {
+      texto:
+        "Profissional excepcional. Entende de negócio, não só de código. A landing page dobrou nossa captação de pacientes.",
+      autor: "Dr. Ricardo Alves",
+      cargo: "Clínica Estética — Joinville, SC",
+    },
+    {
+      texto:
+        "A automação do WhatsApp mudou o jogo. Atendo 3x mais sem precisar ficar no celular o dia todo.",
+      autor: "Marcos Oliveira",
+      cargo: "Empresário — São Paulo, SP",
+    },
+  ],
+  stats: [
+    { n: "47+", l: "projetos entregues" },
+    { n: "100%", l: "satisfação" },
+    { n: "3x", l: "mais leads em média" },
+    { n: "24h", l: "suporte ativo" },
+  ],
+};
+// ============================================================
+
+const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
+
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 30, filter: "blur(6px)" },
+  show: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.75, ease },
+  },
+};
+
+const navLinks = [
+  { label: "Sobre", href: "#sobre" },
+  { label: "Serviços", href: "#servicos" },
+  { label: "Projetos", href: "#projetos" },
+  { label: "Habilidades", href: "#habilidades" },
+  { label: "Contato", href: "#contato" },
+];
+
+function smoothScroll(href: string) {
+  document
+    .getElementById(href.replace("#", ""))
+    ?.scrollIntoView({ behavior: "smooth" });
+}
+
+// ── NAVBAR ──
+function Navbar() {
+  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const WA = `https://wa.me/${ME.whatsapp}?text=Olá! Vi seu portfólio e quero conversar sobre um projeto.`;
+
+  useEffect(() => {
+    const h = () => setScrolled(window.scrollY > 30);
+    window.addEventListener("scroll", h, { passive: true });
+    return () => window.removeEventListener("scroll", h);
+  }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
+  return (
+    <>
+      <nav
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500
+        ${scrolled ? "bg-[#0a0a09]/90 backdrop-blur-2xl border-b border-white/6" : "bg-transparent"}`}
+      >
+        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, ease }}
+            className="font-serif text-lg text-white"
+          >
+            {ME.nome.split(" ")[0]}
+            <span className="text-[#9a7d4a]">.</span>
+          </motion.div>
+
+          <div className="hidden md:flex items-center gap-7">
+            {navLinks.map((l) => (
+              <button
+                key={l.href}
+                onClick={() => smoothScroll(l.href)}
+                className="text-[11px] font-medium tracking-[.15em] uppercase text-white/50 hover:text-white transition-colors duration-200"
+              >
+                {l.label}
+              </button>
+            ))}
+          </div>
+
+          <div className="flex items-center gap-3">
+            <a
+              href={WA}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden sm:inline-flex items-center gap-2 text-[11px] font-medium tracking-[.15em] uppercase bg-[#9a7d4a] hover:bg-[#c4a46b] text-white px-5 py-2.5 transition-all duration-200 hover:-translate-y-0.5"
+            >
+              <MessageCircle className="w-3.5 h-3.5" />
+              Falar comigo
+            </a>
+            <button
+              onClick={() => setOpen(!open)}
+              className="md:hidden p-2 text-white/70 hover:text-white transition-colors"
+            >
+              {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-40 bg-[#0a0a09] flex flex-col px-6 pt-24 pb-12 gap-4 md:hidden"
+          >
+            {navLinks.map((l, i) => (
+              <motion.button
+                key={l.href}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: i * 0.07, duration: 0.35, ease }}
+                onClick={() => {
+                  smoothScroll(l.href);
+                  setOpen(false);
+                }}
+                className="text-left font-serif text-4xl font-normal text-white hover:text-[#9a7d4a] transition-colors py-3 border-b border-white/6"
+              >
+                {l.label}
+              </motion.button>
+            ))}
+            <motion.a
+              href={WA}
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.38, duration: 0.35, ease }}
+              onClick={() => setOpen(false)}
+              className="mt-6 inline-flex items-center justify-center gap-2 bg-[#9a7d4a] text-white text-[11px] font-medium tracking-[.18em] uppercase px-8 py-4"
+            >
+              <MessageCircle className="w-4 h-4" />
+              Falar pelo WhatsApp
+            </motion.a>
+            <div className="mt-auto flex gap-4">
+              <a
+                href={ME.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white/30 hover:text-white transition-colors"
+              >
+                <Github className="w-5 h-5" />
+              </a>
+              <a
+                href={ME.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white/30 hover:text-white transition-colors"
+              >
+                <Linkedin className="w-5 h-5" />
+              </a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
+  );
+}
+
+// ── HERO ──
+function Hero() {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+  const y = useTransform(scrollYProgress, [0, 1], [0, 80]);
+  const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
+  const WA = `https://wa.me/${ME.whatsapp}?text=Olá! Vi seu portfólio e quero conversar sobre um projeto.`;
+
+  return (
+    <section
+      ref={ref}
+      className="relative min-h-screen flex flex-col items-center justify-center px-6 pt-20 pb-16 overflow-hidden bg-[#0a0a09]"
+    >
+      {/* Grid background */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-size-[72px_72px] mask-[radial-gradient(ellipse_80%_70%_at_50%_40%,black,transparent)]" />
+      {/* Glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-175 h-125[radial-gradient(ellipse_at_50%_0%,rgba(154,125,74,0.12),transparent_70%)] pointer-events-none" />
+
+      <motion.div
+        style={{ y, opacity }}
+        className="relative flex flex-col items-center text-center max-w-4xl"
+      >
+        {/* Badge */}
+        <motion.div
+          initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
+          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          transition={{ duration: 0.7, ease, delay: 0.1 }}
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/8 bg-white/3 text-[10px] font-medium tracking-[.25em] uppercase text-[#9a7d4a] mb-8"
+        >
+          <span className="w-1.5 h-1.5 rounded-full bg-[#9a7d4a] animate-pulse" />
+          Disponível para projetos
+        </motion.div>
+
+        {/* Olá, eu sou */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease, delay: 0.2 }}
+          className="text-white/40 text-lg mb-2 font-light"
+        >
+          Olá, eu sou
+        </motion.p>
+
+        {/* Nome */}
+        <motion.h1
+          initial={{ opacity: 0, y: 30, filter: "blur(10px)" }}
+          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          transition={{ duration: 0.9, ease, delay: 0.3 }}
+          className="font-serif text-6xl md:text-8xl font-normal leading-none text-white tracking-tight mb-4"
+        >
+          {ME.nome.split(" ")[0]}{" "}
+          <span className="italic text-[#c4a46b]">{ME.nome.split(" ")[1]}</span>
+        </motion.h1>
+
+        {/* Título animado */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease, delay: 0.45 }}
+          className="flex flex-wrap items-center justify-center gap-2 mb-6 text-sm font-medium tracking-[.12em] uppercase text-white/40"
+        >
+          <span>Full Stack Developer</span>
+          <span className="text-[#9a7d4a]">·</span>
+          <span>Sites Premium</span>
+          <span className="text-[#9a7d4a]">·</span>
+          <span>Automação</span>
+          <span className="text-[#9a7d4a]">·</span>
+          <span>Landing Pages</span>
+        </motion.div>
+
+        {/* Linha dourada */}
+        <motion.div
+          initial={{ scaleX: 0, opacity: 0 }}
+          animate={{ scaleX: 1, opacity: 1 }}
+          transition={{ duration: 0.8, ease, delay: 0.55 }}
+          style={{ originX: 0.5 }}
+          className="w-12 h-px bg-[#9a7d4a] mb-8"
+        />
+
+        {/* Bio */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease, delay: 0.6 }}
+          className="text-white/50 text-lg leading-relaxed max-w-2xl mb-10"
+        >
+          Crio <span className="text-white/80">sites premium</span>,{" "}
+          <span className="text-white/80">landing pages de alta conversão</span>{" "}
+          e <span className="text-white/80">automações</span> que trabalham por
+          você 24 horas. Para clínicas, advogados, restaurantes e empresas que
+          querem crescer de verdade.
+        </motion.p>
+
+        {/* CTAs */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease, delay: 0.75 }}
+          className="flex flex-wrap gap-3 justify-center mb-14"
+        >
+          <motion.a
+            href={WA}
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ y: -2 }}
+            whileTap={{ scale: 0.97 }}
+            className="inline-flex items-center gap-2 bg-white text-[#111110] font-semibold text-sm px-7 py-3.5 hover:bg-white/90 transition-all shadow-[0_0_30px_rgba(255,255,255,0.1)]"
+          >
+            <MessageCircle className="w-4 h-4" />
+            Iniciar projeto
+            <ArrowUpRight className="w-4 h-4" />
+          </motion.a>
+          <button
+            onClick={() => smoothScroll("#projetos")}
+            className="inline-flex items-center gap-2 text-sm font-medium text-white/60 hover:text-white border border-white/10r-white/30 px-7 py-3.5 transition-all"
+          >
+            Ver projetos
+          </button>
+        </motion.div>
+
+        {/* Social links */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.7, ease, delay: 0.9 }}
+          className="flex items-center gap-5"
+        >
+          <a
+            href={ME.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 text-[11px] tracking-[.15em] uppercase text-white/30 hover:text-white transition-colors"
+          >
+            <Github className="w-4 h-4" /> GitHub
+          </a>
+          <div className="w-px h-4 bg-white/10" />
+          <a
+            href={ME.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 text-[11px] tracking-[.15em] uppercase text-white/30 hover:text-white transition-colors"
+          >
+            <Linkedin className="w-4 h-4" /> LinkedIn
+          </a>
+        </motion.div>
+      </motion.div>
+
+      {/* Scroll indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.2, duration: 0.7 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+      >
+        <span className="text-[9px] tracking-[.25em] uppercase text-white/20">
+          scroll
+        </span>
+        <motion.div
+          animate={{ y: [0, 5, 0] }}
+          transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }}
+        >
+          <ChevronDown className="w-4 h-4 text-white/20" />
+        </motion.div>
+      </motion.div>
+    </section>
+  );
+}
+
+// ── STATS BAR ──
+function StatsBar() {
+  return (
+    <div className="bg-[#0d0d0b] border-y border-white/5">
+      <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-px bg-white/4">
+        {ME.stats.map((s, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.6, ease, delay: i * 0.08 }}
+            className="bg-[#0d0d0b] py-8 text-center"
+          >
+            <div className="font-serif text-3xl font-normal text-white mb-1">
+              {s.n}
+            </div>
+            <div className="text-[10px] tracking-[.18em] uppercase text-white/30">
+              {s.l}
+            </div>
+          </motion.div>
+        ))}
+      </div>
     </div>
+  );
+}
+
+// ── SOBRE ──
+function Sobre() {
+  return (
+    <section id="sobre" className="bg-[#111110] py-28 px-6">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+        <div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease }}
+            className="text-[9px] font-medium tracking-[.28em] uppercase text-[#9a7d4a] mb-4"
+          >
+            Sobre mim
+          </motion.div>
+          <motion.h2
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease, delay: 0.1 }}
+            className="font-serif text-4xl md:text-5xl font-normal leading-[1.1] text-white mb-5"
+          >
+            Código que <em className="italic text-[#c4a46b]">vende.</em>
+            <br />
+            Design que <em className="italic text-[#c4a46b]">converte.</em>
+          </motion.h2>
+          <motion.div
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease, delay: 0.2 }}
+            style={{ originX: 0 }}
+            className="w-9 h-px bg-[#9a7d4a] mb-6"
+          />
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease, delay: 0.25 }}
+            className="text-[15px] leading-[1.9] text-white/50 mb-5"
+          >
+            {ME.bio}
+          </motion.p>
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease, delay: 0.35 }}
+            className="text-[15px] leading-[1.9] text-white/50 mb-8"
+          >
+            {ME.bio2}
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease, delay: 0.45 }}
+            className="flex flex-wrap gap-3"
+          >
+            {[
+              { icon: Globe, txt: "Sites & Landing Pages" },
+              { icon: Bot, txt: "Automação WhatsApp" },
+              { icon: Code2, txt: "Full Stack Dev" },
+              { icon: Database, txt: "APIs & Banco de dados" },
+            ].map((t, i) => (
+              <div
+                key={i}
+                className="flex items-center gap-2 px-3.5 py-2 border border-white/[0.07] text-[12px] text-white/50 hover:border-[#9a7d4a]/40 hover:text-white/80 transition-all duration-200"
+              >
+                <t.icon className="w-3.5 h-3.5 text-[#9a7d4a]" />
+                {t.txt}
+              </div>
+            ))}
+          </motion.div>
+        </div>
+
+        {/* Foto + card */}
+        <div className="flex flex-col gap-4">
+          {/* IMAGE: sua foto aqui
+              Substitua por: <Image src="/assets/foto-perfil.jpg" ... />
+          */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease, delay: 0.2 }}
+            className="w-full aspect-4/3 bg-white/3 border border-white/[0.07] flex items-center justify-center relative overflow-hidden group"
+          >
+            <div className="text-center text-white/20">
+              <Code2 className="w-12 h-12 mx-auto mb-3" />
+              <div className="text-[11px] tracking-[.15em] uppercase">
+                Sua foto aqui
+              </div>
+              <div className="text-[10px] mt-1 text-white/10">
+                /public/assets/foto-perfil.jpg
+              </div>
+            </div>
+            {/* Substitua todo o bloco acima por:
+            <Image src="/assets/foto-perfil.jpg" alt="Afonso Fagundes"
+              fill className="object-cover object-top group-hover:scale-105 transition-transform duration-700" />
+            */}
+          </motion.div>
+
+          {/* Card de localização/disponibilidade */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease, delay: 0.4 }}
+            className="p-5 border border-white/[0.07] bg-white/2 flex items-center justify-between"
+          >
+            <div>
+              <div className="text-[9px] tracking-[.22em] uppercase text-[#9a7d4a] mb-1">
+                Localização
+              </div>
+              <div className="text-sm text-white/70">{ME.cidade}</div>
+            </div>
+            <div className="text-right">
+              <div className="text-[9px] tracking-[.22em] uppercase text-[#9a7d4a] mb-1">
+                Status
+              </div>
+              <div className="flex items-center gap-1.5 text-sm text-white/70">
+                <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+                Disponível
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ── SERVIÇOS ──
+function Servicos() {
+  return (
+    <section id="servicos" className="bg-[#0d0d0b] py-28 px-6">
+      <div className="max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-end mb-14">
+          <div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-[9px] font-medium tracking-[.28em] uppercase text-[#9a7d4a] mb-4"
+            >
+              O que eu faço
+            </motion.div>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, ease, delay: 0.1 }}
+              className="font-serif text-4xl md:text-5xl font-normal leading-[1.1] text-white"
+            >
+              Estrutura digital que{" "}
+              <em className="italic text-[#c4a46b]">gera clientes</em> todos os
+              dias
+            </motion.h2>
+          </div>
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease, delay: 0.2 }}
+            className="text-[14px] leading-[1.85] text-white/40"
+          >
+            Não entrego só sites bonitos. Entrego sistemas de captação pensados
+            para o seu negócio crescer de forma previsível e consistente.
+          </motion.p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-white/4">
+          {ME.servicos.map((s, i) => {
+            const Icon = s.icon;
+            return (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.6, ease, delay: i * 0.07 }}
+                className="group bg-[#0d0d0b] hover:bg-[#141412] p-8 relative overflow-hidden transition-colors duration-300 cursor-default"
+              >
+                {/* linha dourada hover */}
+                <div className="absolute bottom-0 left-0 h-0.5 w-0 bg-[#9a7d4a] group-hover:w-full transition-all duration-500" />
+
+                <div className="flex items-start justify-between mb-5">
+                  <div className="w-10 h-10 border border-white/8 flex items-center justify-center group-hover:border-[#9a7d4a]/40 transition-colors">
+                    <Icon className="w-4.5 h-4.5 text-[#9a7d4a]" />
+                  </div>
+                  <span className="text-[9px] tracking-[.18em] uppercase text-[#9a7d4a]/60 border border-[#9a7d4a]/20 px-2.5 py-1">
+                    {s.destaque}
+                  </span>
+                </div>
+
+                <h3 className="font-serif text-lg font-normal text-white mb-3">
+                  {s.titulo}
+                </h3>
+                <p className="text-[13px] leading-[1.8] text-white/40 mb-5">
+                  {s.desc}
+                </p>
+
+                <ul className="flex flex-col gap-1.5">
+                  {s.itens.map((item, j) => (
+                    <li
+                      key={j}
+                      className="flex items-center gap-2 text-[12px] text-white/35"
+                    >
+                      <span className="w-1 h-1 rounded-full bg-[#9a7d4a] shrink-0" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ── PROJETOS ──
+function Projetos() {
+  return (
+    <section id="projetos" className="bg-[#111110] py-28 px-6">
+      <div className="max-w-6xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="text-[9px] font-medium tracking-[.28em] uppercase text-[#9a7d4a] mb-4">
+          Portfólio
+        </motion.div>
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, ease, delay: 0.1 }}
+          className="font-serif text-4xl md:text-5xl font-normal leading-[1.1] text-white mb-14">
+          Projetos que{" "}
+          <em className="italic text-[#c4a46b]">geram resultado</em>
+        </motion.h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-white/4">
+          {ME.projetos.map((p, i) => {
+  const Wrapper = p.link ? motion.a : motion.div
+  return (
+    <Wrapper
+      key={i}
+      {...(p.link ? {
+        href: p.link,
+        target: "_blank",
+        rel: "noopener noreferrer",
+      } : {})}
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.7, ease, delay: i * 0.1 }}
+      className="group bg-[#111110] hover:bg-[#161614] transition-colors duration-300 overflow-hidden cursor-default">
+
+      {/* Imagem */}
+      <div className="w-full h-56 relative overflow-hidden border-b border-white/[0.05]">
+        {p.img ? (
+          <Image
+            src={p.img}
+            alt={p.titulo}
+            fill
+            sizes="(max-width: 768px) 100vw, 50vw"
+            className="object-cover group-hover:scale-105 transition-transform duration-700"
+          />
+        ) : (
+          <div className="w-full h-full bg-white/[0.03] flex items-center justify-center">
+            <div className="text-center text-white/15">
+              <Monitor className="w-10 h-10 mx-auto mb-2" />
+              <div className="text-[10px] tracking-[.15em] uppercase">em breve</div>
+            </div>
+          </div>
+        )}
+      </div>
+
+      <div className="p-7">
+        <div className="flex flex-wrap gap-1.5 mb-4">
+          {p.tags.map((t, j) => (
+            <span key={j}
+              className="text-[10px] tracking-[.12em] uppercase text-[#9a7d4a] border border-[#9a7d4a]/25 px-2.5 py-1">
+              {t}
+            </span>
+          ))}
+        </div>
+
+        <div className="flex items-start justify-between gap-3">
+          <div>
+            <h3 className="font-serif text-xl font-normal text-white mb-2 group-hover:text-[#c4a46b] transition-colors">
+              {p.titulo}
+            </h3>
+            <p className="text-[13px] leading-[1.8] text-white/40">{p.desc}</p>
+          </div>
+          {/* Ícone de link — só aparece se tiver URL */}
+          {p.link && (
+            <div className="flex-shrink-0 w-8 h-8 border border-white/[0.08] flex items-center justify-center group-hover:border-[#9a7d4a]/50 group-hover:text-[#9a7d4a] text-white/20 transition-all mt-1">
+              <ArrowUpRight className="w-4 h-4" />
+            </div>
+          )}
+        </div>
+      </div>
+    </Wrapper>
+  )
+})}
+        </div>
+      </div>
+    </section>
   )
 }
 
-export default function Home() {
-  const [slideIndex, setSlideIndex] = useState(0)
-  const heroRef = useRef(null)
-  const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] })
-  const mockupY = useTransform(scrollYProgress, [0, 1], [0, 60])
-  const mockupOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0])
-
-  // Carousel auto-play
-  useEffect(() => {
-    const t = setInterval(() => setSlideIndex(i => (i + 1) % projects.length), 4500)
-    return () => clearInterval(t)
-  }, [])
-
-  const WA_URL = "https://wa.me/5599999999999?text=Quero%20um%20site%20que%20gera%20clientes"
-
+// ── HABILIDADES ──
+function Habilidades() {
   return (
-    <main className="bg-[#060606] text-white overflow-x-hidden">
-      <header className="sticky top-0 z-50">
-        <Navbar />
-      </header>
-
-      {/* ── HERO ── */}
-      <section ref={heroRef} className="relative min-h-screen flex flex-col items-center justify-center px-6 pt-28 pb-20 text-center overflow-hidden">
-        {/* Grid background */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-size-[60px_60px] mask-[radial-gradient(ellipse_70%_60%_at_50%_30%,black,transparent)]" />
-        {/* Radial glow */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-175 h-100 bg-[radial-gradient(ellipse_at_50%_0%,rgba(255,255,255,0.06),transparent_70%)] pointer-events-none" />
-
+    <section id="habilidades" className="bg-[#0d0d0b] py-28 px-6">
+      <div className="max-w-6xl mx-auto">
         <motion.div
-          variants={{ show: { transition: { staggerChildren: 0.12 } } }}
-          initial="hidden" animate="show"
-          className="flex flex-col items-center gap-0"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="text-[9px] font-medium tracking-[.28em] uppercase text-[#9a7d4a] mb-4"
         >
-          {/* Badge */}
-          <motion.div variants={fadeUp} custom={0}
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-white/10 text-neutral-400 text-xs font-medium uppercase tracking-widest mb-8"
-          >
-            <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-            Disponível para novos projetos
-          </motion.div>
-
-          {/* Title */}
-          <motion.h1 variants={fadeUp} custom={1}
-            className="text-5xl md:text-7xl font-semibold tracking-[-0.04em] leading-[1.06] max-w-4xl mb-6"
-          >
-            Sites que transformam<br />
-            visitantes em{" "}
-            <span className="bg-linear-to-br from-white to-white/40 bg-clip-text text-transparent">
-              clientes
-            </span>
-          </motion.h1>
-
-          {/* Sub */}
-          <motion.p variants={fadeUp} custom={2}
-            className="text-lg text-neutral-400 max-w-md leading-relaxed mb-10"
-          >
-            Design premium + automação no WhatsApp.<br />
-            Estrutura digital completa para seu negócio crescer.
-          </motion.p>
-
-          {/* CTAs */}
-          <motion.div variants={fadeUp} custom={3} className="flex flex-wrap gap-3 justify-center">
-            <motion.a href={WA_URL} whileHover={{ y: -2 }} whileTap={{ scale: 0.97 }}
-              className="inline-flex items-center gap-2 bg-white text-black font-semibold text-sm px-6 py-3.5 rounded-xl transition-shadow hover:shadow-[0_8px_30px_rgba(255,255,255,0.12)]"
-            >
-              <MessageCircle className="w-4 h-4" />
-              Falar no WhatsApp
-              <ArrowUpRight className="w-4 h-4" />
-            </motion.a>
-            <a href="#servicos"
-              className="inline-flex items-center gap-2 text-sm font-medium text-white/80 border border-white/10 px-6 py-3.5 rounded-xl hover:bg-white/5 hover:border-white/20 transition-all"
-            >
-              Ver serviços
-            </a>
-          </motion.div>
+          Stack técnica
         </motion.div>
-
-        {/* MOCKUP */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: easeOut, delay: 0.5 }}
-          style={{ y: mockupY, opacity: mockupOpacity }}
-          className="mt-16 w-full max-w-3xl rounded-2xl overflow-hidden border border-white/[0.07] shadow-[0_40px_80px_rgba(0,0,0,0.7),0_0_80px_rgba(255,255,255,0.015)]"
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, ease, delay: 0.1 }}
+          className="font-serif text-4xl md:text-5xl font-normal leading-[1.1] text-white mb-4"
         >
-          {/* Browser bar */}
-          <div className="h-10 bg-[#111] border-b border-white/6 flex items-center px-3.5 gap-1.5">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
-            <span className="w-2.5 h-2.5 rounded-full bg-[#febc2e]" />
-            <span className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
-            <div className="flex-1 mx-3 h-5 bg-[#1a1a1a] rounded flex items-center justify-center">
-              <span className="text-[11px] text-[#444]">Afonso.Fagundes/dashboard</span>
-            </div>
-          </div>
-          {/* Dashboard body */}
-          <div className="grid grid-cols-[180px_1fr] bg-[#0d0d0d]">
-            <div className="border-r border-white/6 p-3 hidden sm:flex flex-col gap-1">
-              {["Visão geral", "Clientes", "Conversões", "WhatsApp", "Relatórios"].map((item, i) => (
-                <div key={item} className={`h-8 rounded-md flex items-center px-2.5 text-xs gap-2 cursor-default transition-colors ${i === 0 ? "bg-white/[0.07] text-white" : "text-neutral-500 hover:text-white hover:bg-white/5"}`}>
-                  <span className={`w-1.5 h-1.5 rounded-sm ${i === 0 ? "bg-white" : "bg-neutral-600"}`} />
-                  {item}
-                </div>
-              ))}
-            </div>
-            <div className="p-5 flex flex-col gap-3">
-              <div className="grid grid-cols-3 gap-3">
-                {[
-                  { label: "Leads hoje", value: "24", green: true },
-                  { label: "Conversão", value: "73%" },
-                  { label: "Faturamento", value: "R$ 4.800" },
-                ].map(s => (
-                  <div key={s.label} className="bg-[#111] border border-white/6 rounded-xl p-3.5">
-                    <div className="text-[10px] text-neutral-500 mb-1.5">{s.label}</div>
-                    <div className={`text-xl font-semibold tracking-tight ${s.green ? "text-green-400" : ""}`}>{s.value}</div>
-                  </div>
-                ))}
+          Tecnologias que <em className="italic text-[#c4a46b]">domino</em>
+        </motion.h2>
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, ease, delay: 0.2 }}
+          className="text-[14px] leading-relaxed text-white/40 max-w-xl mb-14"
+        >
+          Do front ao back-end, do banco de dados ao deploy. Entrego soluções
+          completas sem depender de terceiros.
+        </motion.p>
+
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-px bg-white/4">
+          {ME.stacks.map((s, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.5, ease, delay: i * 0.06 }}
+              whileHover={{ y: -3 }}
+              className="group bg-[#0d0d0b] hover:bg-[#131311] p-7 flex flex-col items-center text-center transition-all duration-300 cursor-default"
+            >
+              <div
+                className="w-12 h-12 rounded flex items-center justify-center mb-4 font-mono text-sm font-bold transition-transform duration-300 group-hover:scale-110"
+                style={{
+                  background: s.bg,
+                  color: s.cor,
+                  border: `1px solid ${s.cor}25`,
+                }}
+              >
+                {s.icon}
               </div>
-              {/* Mini chart */}
-              <div className="bg-[#111] border border-white/6 rounded-xl p-3 h-24 flex items-end gap-1.5">
-                {[35,55,42,70,58,80,65,90,72,85,95,88].map((h, i) => (
-                  <motion.div key={i}
-                    initial={{ height: 0 }}
-                    animate={{ height: `${h}%` }}
-                    transition={{ delay: 0.8 + i * 0.05, duration: 0.5, ease: easeOut }}
-                    className={`flex-1 rounded-t ${[2,5,7,10].includes(i) ? "bg-white" : "bg-[#1e1e1e]"}`}
+              <div className="text-[13px] font-medium text-white/60 group-hover:text-white transition-colors">
+                {s.nome}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Soft skills */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, ease, delay: 0.3 }}
+          className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-px bg-white/4"
+        >
+          {[
+            {
+              icon: Zap,
+              titulo: "Entrega rápida",
+              desc: "Projetos prontos para ir ao ar rapidamente, sem perder qualidade.",
+            },
+            {
+              icon: Star,
+              titulo: "Foco em resultados",
+              desc: "Cada decisão de design e código visa gerar mais clientes para você.",
+            },
+            {
+              icon: Smartphone,
+              titulo: "Mobile-first",
+              desc: "Todo projeto é pensado primeiro para mobile, onde está seu cliente.",
+            },
+          ].map((c, i) => (
+            <div key={i} className="bg-[#0d0d0b] p-7 flex gap-4">
+              <div className="w-9 h-9 border border-white/[0.07] flex items-center justify-center shrink-0">
+                <c.icon className="w-4 h-4 text-[#9a7d4a]" />
+              </div>
+              <div>
+                <div className="text-sm font-medium text-white mb-1.5">
+                  {c.titulo}
+                </div>
+                <div className="text-[12px] text-white/35 leading-relaxed">
+                  {c.desc}
+                </div>
+              </div>
+            </div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+// ── DEPOIMENTOS ──
+function Depoimentos() {
+  return (
+    <section className="bg-[#111110] py-28 px-6">
+      <div className="max-w-6xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="text-[9px] font-medium tracking-[.28em] uppercase text-[#9a7d4a] mb-4"
+        >
+          Depoimentos
+        </motion.div>
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, ease, delay: 0.1 }}
+          className="font-serif text-4xl font-normal leading-[1.1] text-white mb-14"
+        >
+          O que meus clientes <em className="italic text-[#c4a46b]">dizem</em>
+        </motion.h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-white/4">
+          {ME.depoimentos.map((d, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.6, ease, delay: i * 0.1 }}
+              className="bg-[#111110] hover:bg-[#161614] p-8 transition-colors duration-300"
+            >
+              <div className="flex gap-0.5 mb-5">
+                {[...Array(5)].map((_, j) => (
+                  <Star
+                    key={j}
+                    className="w-3 h-3 fill-[#9a7d4a] text-[#9a7d4a]"
                   />
                 ))}
               </div>
-            </div>
-          </div>
-        </motion.div>
-      </section>
+              <p className="font-serif text-[15px] italic text-white/60 leading-[1.8] mb-6">
+                "{d.texto}"
+              </p>
+              <div className="text-[11px] tracking-[.15em] uppercase text-[#9a7d4a]">
+                {d.autor}
+              </div>
+              <div className="text-[11px] text-white/25 mt-0.5">{d.cargo}</div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
 
-      {/* ── SERVICES ── */}
-      <section id="servicos" className="max-w-5xl mx-auto px-6 py-24">
-        <SectionHeader label="O que eu faço" title="Estrutura digital para vender todos os dias"
-          sub="Não vendo só sites bonitos. Entrego sistemas de captação que trabalham 24h pelo seu negócio."
-        />
+// ── CTA FINAL ──
+function CTAFinal() {
+  const WA = `https://wa.me/${ME.whatsapp}?text=Olá! Vi seu portfólio e quero conversar sobre um projeto.`;
+  return (
+    <section
+      id="contato"
+      className="bg-[#0a0a09] py-32 px-6 relative overflow-hidden"
+    >
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_600px_400px_at_50%_50%,rgba(154,125,74,0.07),transparent)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-size-[60px_60px]" />
+
+      <div className="relative max-w-3xl mx-auto text-center">
         <motion.div
-          variants={{ show: { transition: { staggerChildren: 0.1 } } }}
-          initial="hidden" whileInView="show" viewport={{ once: true, margin: "-60px" }}
-          className="mt-12 grid md:grid-cols-3 gap-px bg-white/[0.07] rounded-2xl overflow-hidden"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="text-[9px] font-medium tracking-[.28em] uppercase text-[#9a7d4a] mb-6"
         >
-          {[
-            { icon: "🎯", title: "Sites premium", desc: "Design de alto nível que transmite autoridade e converte visitantes em leads qualificados." },
-            { icon: "💬", title: "Automação WhatsApp", desc: "Atendimento automático 24 horas que responde, qualifica e agenda consultas." },
-            { icon: "⚡", title: "Landing pages", desc: "Páginas focadas em conversão com copy persuasivo e CTAs que geram resultado real." },
-          ].map((s, i) => (
-            <motion.div key={i} variants={fadeUp} custom={i}
-              className="group bg-[#060606] p-9 relative overflow-hidden hover:bg-[#0d0d0d] transition-colors"
-            >
-              <div className="text-2xl mb-5">{s.icon}</div>
-              <h3 className="font-semibold mb-2.5 tracking-tight">{s.title}</h3>
-              <p className="text-sm text-neutral-500 leading-relaxed">{s.desc}</p>
-              <div className="mt-6 h-px w-0 bg-white/25 group-hover:w-full transition-all duration-500" />
-            </motion.div>
-          ))}
+          Vamos trabalhar juntos
         </motion.div>
-      </section>
 
-      {/* ── ABOUT ── */}
-      <section id="sobre" className="max-w-5xl mx-auto px-6 py-24 border-t border-white/6">
-        <div className="grid md:grid-cols-2 gap-20 items-center">
-          <div>
-            <SectionHeader label="Sobre mim"
-              title="Desenvolvedor focado em resultado, não só em código"
-              sub="Trabalho com clínicas, advogados, restaurantes e negócios locais criando presença digital que gera clientes de forma previsível."
-            />
-            <motion.div
-              variants={{ show: { transition: { staggerChildren: 0.08 } } }}
-              initial="hidden" whileInView="show" viewport={{ once: true }}
-              className="mt-7 flex flex-col gap-2.5"
-            >
-              {[
-                { icon: "📍", text: "Atendendo clientes em todo o Brasil" },
-                { icon: "⚡", text: "Projetos prontos para gerar resultado desde o dia 1" },
-                { icon: "💬", text: "Contato direto e rápido via WhatsApp" },
-              ].map((p, i) => (
-                <motion.div key={i} variants={fadeUp}
-                  className="flex items-center gap-3 text-sm text-neutral-400 px-3.5 py-2.5 rounded-lg border border-white/6 hover:border-white/20 hover:text-white transition-all"
-                >
-                  <span className="w-7 h-7 rounded-md bg-white/5 flex items-center justify-center text-sm">{p.icon}</span>
-                  {p.text}
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-          {/* Photo card */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: easeOut }}
-            whileHover={{ rotateY: -6, rotateX: 3 }}
-            style={{ transformStyle: "preserve-3d", perspective: 600 }}
-            className="max-w-xs mx-auto w-full"
-          >
-            <div className="aspect-3/4 rounded-2xl bg-[#0d0d0d] border border-white/[0.07] overflow-hidden relative flex flex-col items-center justify-center gap-3 shadow-[0_30px_80px_rgba(0,0,0,0.6)]">
-              <div className="w-20 h-20 rounded-full bg-linear-to-br from-neutral-700 to-neutral-900 border border-white/10 flex items-center justify-center text-3xl font-semibold text-white/40">A</div>
-              <div className="font-semibold text-white/70">Afonso Fagundes</div>
-              <div className="text-xs text-neutral-500">Desenvolvedor & Designer</div>
-              {/* Replace img src with your photo */}
-              {/* <img src="/perfil.png" className="absolute inset-0 w-full h-full object-cover" alt="Afonso" /> */}
-              <div className="absolute inset-0 bg-linear-to-tr from-transparent via-white/3 to-transparent pointer-events-none" />
-            </div>
-          </motion.div>
-        </div>
+        <motion.h2
+          initial={{ opacity: 0, y: 24, filter: "blur(8px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease, delay: 0.1 }}
+          className="font-serif text-5xl md:text-6xl font-normal leading-[1.05] text-white mb-5"
+        >
+          Pronto para ter mais{" "}
+          <em className="italic text-[#c4a46b]">clientes</em> todos os dias?
+        </motion.h2>
 
-        {/* Stats */}
-        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-px bg-white/[0.07] rounded-2xl overflow-hidden">
-          {stats.map((s, i) => (
-            <StatBox key={i} {...s} />
-          ))}
-        </div>
-      </section>
-
-      {/* ── PROJECTS ── */}
-      <section id="projetos" className="max-w-5xl mx-auto px-6 py-24 border-t border-white/6">
-        <SectionHeader label="Projetos" title="Resultados reais para negócios reais"
-          sub="Exemplos de sites e sistemas entregues a clientes em todo o Brasil."
-        />
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, ease, delay: 0.25 }}
+          style={{ originX: 0.5 }}
+          className="w-10 h-px bg-[#9a7d4a] mx-auto mb-6"
+        />
+
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: easeOut, delay: 0.2 }}
-          className="mt-10 bg-[#0d0d0d] border border-white/[0.07] rounded-2xl overflow-hidden"
+          transition={{ duration: 0.7, ease, delay: 0.3 }}
+          className="text-[15px] text-white/40 leading-relaxed mb-12 max-w-xl mx-auto"
         >
-          <div className="overflow-hidden">
-            <AnimatePresence mode="wait">
-              <motion.div key={slideIndex}
-                initial={{ opacity: 0, x: 40 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -40 }}
-                transition={{ duration: 0.45, ease: easeOut }}
-                className="p-8 md:p-10 flex flex-col items-center gap-5"
-              >
-                <span className="text-xs font-semibold text-neutral-500 border border-white/[0.07] px-3 py-1 rounded-full uppercase tracking-widest">
-                  {projects[slideIndex].tag}
-                </span>
+          Seja um site premium, landing page, automação ou sistema completo —
+          vamos conversar. Análise gratuita, sem compromisso.
+        </motion.p>
 
-                {/* Screen mockup */}
-                <div className="w-full max-w-lg rounded-xl border border-white/[0.07] overflow-hidden">
-                  <div className="h-8 bg-[#111] border-b border-white/6 flex items-center gap-1.5 px-3">
-                    <span className="w-2 h-2 rounded-full bg-[#ff5f57]" />
-                    <span className="w-2 h-2 rounded-full bg-[#febc2e]" />
-                    <span className="w-2 h-2 rounded-full bg-[#28c840]" />
-                    <span className="flex-1 text-center text-[10px] text-[#444]">{projects[slideIndex].domain}</span>
-                  </div>
-                  <div className={`p-5 bg-linear-to-br ${projects[slideIndex].bg} flex flex-col gap-3`}>
-                    <div className="rounded-xl p-5 border border-white/6 text-center flex flex-col items-center gap-2"
-                      style={{ background: `${projects[slideIndex].accent}14` }}>
-                      <div className="font-bold text-base">{projects[slideIndex].title}</div>
-                      <div className="text-xs text-neutral-400">{projects[slideIndex].sub}</div>
-                      <div className="text-[11px] font-semibold px-4 py-1.5 rounded-lg mt-1 text-black"
-                        style={{ background: projects[slideIndex].accent }}>
-                        {projects[slideIndex].cta} →
-                      </div>
-                    </div>
-                    <div className="grid grid-cols-3 gap-2">
-                      {projects[slideIndex].services.map(svc => (
-                        <div key={svc} className="rounded-lg p-2.5 border border-white/5 text-center text-[11px] text-neutral-400">
-                          {svc}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-                <div className="font-medium text-sm text-neutral-300">{projects[slideIndex].label}</div>
-              </motion.div>
-            </AnimatePresence>
-          </div>
-
-          {/* Controls */}
-          <div className="border-t border-white/6 p-4 flex items-center justify-center gap-4">
-            <button onClick={() => setSlideIndex(i => (i - 1 + projects.length) % projects.length)}
-              className="w-8 h-8 rounded-lg border border-white/8 text-neutral-400 hover:text-white hover:bg-white/6 flex items-center justify-center transition-all">
-              <ChevronLeft className="w-4 h-4" />
-            </button>
-            <div className="flex gap-1.5">
-              {projects.map((_, i) => (
-                <button key={i} onClick={() => setSlideIndex(i)}
-                  className={`h-1.5 rounded-full transition-all duration-300 ${i === slideIndex ? "w-5 bg-white" : "w-1.5 bg-neutral-600"}`}
-                />
-              ))}
-            </div>
-            <button onClick={() => setSlideIndex(i => (i + 1) % projects.length)}
-              className="w-8 h-8 rounded-lg border border-white/8 text-neutral-400 hover:text-white hover:bg-white/6 flex items-center justify-center transition-all">
-              <ChevronRight className="w-4 h-4" />
-            </button>
-          </div>
-        </motion.div>
-      </section>
-
-      {/* ── FINAL CTA ── */}
-      <section className="relative py-36 text-center overflow-hidden border-t border-white/6">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_600px_400px_at_50%_50%,rgba(255,255,255,0.04),transparent)]" />
         <motion.div
-          variants={{ show: { transition: { staggerChildren: 0.1 } } }}
-          initial="hidden" whileInView="show" viewport={{ once: true }}
-          className="relative max-w-3xl mx-auto px-6"
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, ease, delay: 0.4 }}
+          className="flex flex-wrap gap-3 justify-center mb-14"
         >
-          <motion.h2 variants={fadeUp}
-            className="text-4xl md:text-6xl font-semibold tracking-[-0.04em] leading-[1.08] mb-5"
+          <motion.a
+            href={WA}
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ y: -2 }}
+            whileTap={{ scale: 0.97 }}
+            className="inline-flex items-center gap-2 bg-white text-[#111110] font-semibold text-sm px-8 py-4 hover:bg-white/90 transition-all shadow-[0_0_40px_rgba(255,255,255,0.08)]"
           >
-            Pronto para ter{" "}
-            <span className="bg-linear-to-br from-white to-white/40 bg-clip-text text-transparent">
-              mais clientes
-            </span>{" "}
-            todos os dias?
-          </motion.h2>
-          <motion.p variants={fadeUp} className="text-neutral-400 text-lg mb-10">
-            Vamos conversar sobre o seu projeto. Sem compromisso, sem enrolação.
-          </motion.p>
-          <motion.div variants={fadeUp}>
-            <motion.a href={WA_URL} whileHover={{ y: -2 }} whileTap={{ scale: 0.97 }}
-              className="inline-flex items-center gap-2.5 bg-white text-black font-semibold px-8 py-4 rounded-xl text-base hover:shadow-[0_8px_40px_rgba(255,255,255,0.15)] transition-shadow"
-            >
-              <MessageCircle className="w-5 h-5" />
-              Falar comigo agora
-              <ArrowUpRight className="w-5 h-5" />
-            </motion.a>
-          </motion.div>
+            <MessageCircle className="w-4 h-4" />
+            Iniciar projeto agora
+            <ArrowUpRight className="w-4 h-4" />
+          </motion.a>
+          <a
+            href={`mailto:${ME.email}`}
+            className="inline-flex items-center gap-2 text-sm font-medium text-white/50 hover:text-white border border-white/10 hover:border-white/30 px-8 py-4 transition-all"
+          >
+            <Mail className="w-4 h-4" />
+            Enviar e-mail
+          </a>
         </motion.div>
-      </section>
 
-      <footer className="border-t border-white/6 py-8 px-6 flex items-center justify-between flex-wrap gap-4">
-        <span className="text-sm text-neutral-500">© 2026 Afonso Fagundes — Santa Catarina, Brasil</span>
-        <a href={WA_URL} className="text-sm text-neutral-500 hover:text-white transition-colors">
-          WhatsApp <ArrowUpRight className="w-3 h-3 inline" />
-        </a>
-      </footer>
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.5 }}
+          className="flex flex-wrap justify-center gap-6 text-[12px] text-white/25"
+        >
+          <div className="flex items-center gap-2">
+            <Phone className="w-3.5 h-3.5 text-[#9a7d4a]" />
+            {ME.whatsapp}
+          </div>
+          <div className="flex items-center gap-2">
+            <Mail className="w-3.5 h-3.5 text-[#9a7d4a]" />
+            {ME.email}
+          </div>
+          <div className="flex items-center gap-2">
+            <Globe className="w-3.5 h-3.5 text-[#9a7d4a]" />
+            {ME.cidade}
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
 
-      {/* Floating WhatsApp */}
-      <motion.a href={WA_URL} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}
-        className="fixed bottom-6 right-6 z-50 w-13 h-13 rounded-full bg-[#25d366] flex items-center justify-center shadow-[0_4px_20px_rgba(37,211,102,0.35)] hover:shadow-[0_6px_28px_rgba(37,211,102,0.5)] transition-shadow"
+// ── FOOTER ──
+function Footer() {
+  const WA = `https://wa.me/${ME.whatsapp}?text=Olá! Vi seu portfólio e quero conversar sobre um projeto.`;
+  return (
+    <footer className="bg-[#060605] py-10 px-6 border-t border-white/4">
+      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="font-serif text-lg text-white/40">
+          {ME.nome.split(" ")[0]}
+          <span className="text-[#9a7d4a]">.</span>
+        </div>
+        <div className="text-[11px] text-white/20">
+          © {new Date().getFullYear()} {ME.nome} — Full Stack Developer
+        </div>
+        <div className="flex items-center gap-5">
+          <a
+            href={ME.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white/20 hover:text-white transition-colors"
+          >
+            <Github className="w-4 h-4" />
+          </a>
+          <a
+            href={ME.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white/20 hover:text-white transition-colors"
+          >
+            <Linkedin className="w-4 h-4" />
+          </a>
+          <a
+            href={`mailto:${ME.email}`}
+            className="text-white/20 hover:text-white transition-colors"
+          >
+            <Mail className="w-4 h-4" />
+          </a>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+// ── PAGE ──
+export default function Page() {
+  const WA = `https://wa.me/${ME.whatsapp}?text=Olá! Vi seu portfólio e quero conversar sobre um projeto.`;
+  return (
+    <main className="bg-[#0a0a09] text-[#fafaf8] overflow-x-hidden">
+      <Navbar />
+      <Hero />
+      <StatsBar />
+      <Sobre />
+      <Servicos />
+      <Projetos />
+      <Habilidades />
+      <Depoimentos />
+      <CTAFinal />
+      <Footer />
+
+      {/* WhatsApp flutuante */}
+      <motion.a
+        href={WA}
+        target="_blank"
+        rel="noopener noreferrer"
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 1.5, duration: 0.4, ease }}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }}
+        className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-[#25d366] flex items-center justify-center shadow-[0_4px_24px_rgba(37,211,102,0.4)] hover:shadow-[0_6px_32px_rgba(37,211,102,0.55)] transition-shadow"
         aria-label="WhatsApp"
       >
         <MessageCircle className="w-6 h-6 text-white fill-white" />
       </motion.a>
     </main>
-  )
-}
-
-function SectionHeader({ label, title, sub }: { label: string; title: string; sub: string }) {
-  return (
-    <motion.div
-      variants={{ show: { transition: { staggerChildren: 0.1 } } }}
-      initial="hidden" whileInView="show" viewport={{ once: true, margin: "-60px" }}
-    >
-      <motion.div variants={fadeUp} className="text-xs font-semibold text-neutral-500 uppercase tracking-widest mb-3">
-        {label}
-      </motion.div>
-      <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-semibold tracking-tight leading-[1.15] mb-3">
-        {title}
-      </motion.h2>
-      <motion.p variants={fadeUp} className="text-neutral-500 leading-relaxed max-w-lg">
-        {sub}
-      </motion.p>
-    </motion.div>
-  )
+  );
 }
