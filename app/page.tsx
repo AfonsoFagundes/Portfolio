@@ -143,29 +143,16 @@ const ME = {
       tags: ["Next.js", "Tailwind", "Framer Motion,", "React"],
       cor: "#9a7d4a",
       img: "/assets/templete-lawyer.png",
-      link: "https://lawyer-templete-pwwxj2drk-afonsofagundes85-5295s-projects.vercel.app/"
-    },
-    {
-      titulo: "Site Clínica Estética",
-      desc: "Site premium com agendamento integrado, galeria de resultados e captação automática via WhatsApp.",
-      tags: ["React", "Node.js", "PostgreSQL"],
-      cor: "#9a7d4a",
-      img: "/assets/projeto-2.jpg",
+      link: "https://lawyer-templete-pwwxj2drk-afonsofagundes85-5295s-projects.vercel.app/",
     },
     {
       titulo: "Sistema de Gestão — Restaurante",
-      desc: "Cardápio digital, pedidos via WhatsApp e painel administrativo completo.",
-      tags: ["TypeScript", "API REST", "PostgreSQL"],
+      desc: "Cardápio digital, pedidos via WhatsApp e painel CRM administrativo completo.",
+      tags: ["TypeScript", "API REST", "PostgreSQL", "React", "TailWind", "Node.js"],
       cor: "#9a7d4a",
-      img: "/assets/projeto-3.jpg",
+      img: "/assets/deliciasmf.png",
     },
-    {
-      titulo: "Automação de Atendimento",
-      desc: "Bot de WhatsApp com qualificação automática de leads e integração com CRM.",
-      tags: ["Node.js", "API REST", "Automação"],
-      cor: "#9a7d4a",
-      img: "/assets/projeto-4.jpg",
-    },
+  
   ],
   depoimentos: [
     {
@@ -188,7 +175,7 @@ const ME = {
     },
   ],
   stats: [
-    { n: "47+", l: "projetos entregues" },
+    { n: "7+", l: "projetos entregues" },
     { n: "100%", l: "satisfação" },
     { n: "3x", l: "mais leads em média" },
     { n: "24h", l: "suporte ativo" },
@@ -628,30 +615,15 @@ function Sobre() {
 
         {/* Foto + card */}
         <div className="flex flex-col gap-4">
-          {/* IMAGE: sua foto aqui
-              Substitua por: <Image src="/assets/foto-perfil.jpg" ... />
-          */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.96 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease, delay: 0.2 }}
-            className="w-full aspect-4/3 bg-white/3 border border-white/[0.07] flex items-center justify-center relative overflow-hidden group"
-          >
-            <div className="text-center text-white/20">
-              <Code2 className="w-12 h-12 mx-auto mb-3" />
-              <div className="text-[11px] tracking-[.15em] uppercase">
-                Sua foto aqui
-              </div>
-              <div className="text-[10px] mt-1 text-white/10">
-                /public/assets/foto-perfil.jpg
-              </div>
-            </div>
-            {/* Substitua todo o bloco acima por:
-            <Image src="/assets/foto-perfil.jpg" alt="Afonso Fagundes"
-              fill className="object-cover object-top group-hover:scale-105 transition-transform duration-700" />
-            */}
-          </motion.div>
+  className="w-full aspect-4/5 bg-white/3 border border-white/[0.07] relative overflow-hidden group">
+  <Image
+    src="/assets/afonso.jpeg"
+    alt="Afonso Fagundes"
+    fill
+    className="object-cover object-top group-hover:scale-105 transition-transform duration-700"
+  />
+</motion.div>
 
           {/* Card de localização/disponibilidade */}
           <motion.div
@@ -783,7 +755,8 @@ function Projetos() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="text-[9px] font-medium tracking-[.28em] uppercase text-[#9a7d4a] mb-4">
+          className="text-[9px] font-medium tracking-[.28em] uppercase text-[#9a7d4a] mb-4"
+        >
           Portfólio
         </motion.div>
         <motion.h2
@@ -791,80 +764,89 @@ function Projetos() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, ease, delay: 0.1 }}
-          className="font-serif text-4xl md:text-5xl font-normal leading-[1.1] text-white mb-14">
+          className="font-serif text-4xl md:text-5xl font-normal leading-[1.1] text-white mb-14"
+        >
           Projetos que{" "}
           <em className="italic text-[#c4a46b]">geram resultado</em>
         </motion.h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-white/4">
           {ME.projetos.map((p, i) => {
-  const Wrapper = p.link ? motion.a : motion.div
-  return (
-    <Wrapper
-      key={i}
-      {...(p.link ? {
-        href: p.link,
-        target: "_blank",
-        rel: "noopener noreferrer",
-      } : {})}
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.7, ease, delay: i * 0.1 }}
-      className="group bg-[#111110] hover:bg-[#161614] transition-colors duration-300 overflow-hidden cursor-default">
+            const Wrapper = p.link ? motion.a : motion.div;
+            return (
+              <Wrapper
+                key={i}
+                {...(p.link
+                  ? {
+                      href: p.link,
+                      target: "_blank",
+                      rel: "noopener noreferrer",
+                    }
+                  : {})}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.7, ease, delay: i * 0.1 }}
+                className="group bg-[#111110] hover:bg-[#161614] transition-colors duration-300 overflow-hidden cursor-default"
+              >
+                {/* Imagem */}
+                <div className="w-full h-56 relative overflow-hidden border-b border-white/5">
+                  {p.img ? (
+                    <Image
+                      src={p.img}
+                      alt={p.titulo}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-white/3 flex items-center justify-center">
+                      <div className="text-center text-white/15">
+                        <Monitor className="w-10 h-10 mx-auto mb-2" />
+                        <div className="text-[10px] tracking-[.15em] uppercase">
+                          em breve
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
 
-      {/* Imagem */}
-      <div className="w-full h-56 relative overflow-hidden border-b border-white/[0.05]">
-        {p.img ? (
-          <Image
-            src={p.img}
-            alt={p.titulo}
-            fill
-            sizes="(max-width: 768px) 100vw, 50vw"
-            className="object-cover group-hover:scale-105 transition-transform duration-700"
-          />
-        ) : (
-          <div className="w-full h-full bg-white/[0.03] flex items-center justify-center">
-            <div className="text-center text-white/15">
-              <Monitor className="w-10 h-10 mx-auto mb-2" />
-              <div className="text-[10px] tracking-[.15em] uppercase">em breve</div>
-            </div>
-          </div>
-        )}
-      </div>
+                <div className="p-7">
+                  <div className="flex flex-wrap gap-1.5 mb-4">
+                    {p.tags.map((t, j) => (
+                      <span
+                        key={j}
+                        className="text-[10px] tracking-[.12em] uppercase text-[#9a7d4a] border border-[#9a7d4a]/25 px-2.5 py-1"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
 
-      <div className="p-7">
-        <div className="flex flex-wrap gap-1.5 mb-4">
-          {p.tags.map((t, j) => (
-            <span key={j}
-              className="text-[10px] tracking-[.12em] uppercase text-[#9a7d4a] border border-[#9a7d4a]/25 px-2.5 py-1">
-              {t}
-            </span>
-          ))}
-        </div>
-
-        <div className="flex items-start justify-between gap-3">
-          <div>
-            <h3 className="font-serif text-xl font-normal text-white mb-2 group-hover:text-[#c4a46b] transition-colors">
-              {p.titulo}
-            </h3>
-            <p className="text-[13px] leading-[1.8] text-white/40">{p.desc}</p>
-          </div>
-          {/* Ícone de link — só aparece se tiver URL */}
-          {p.link && (
-            <div className="flex-shrink-0 w-8 h-8 border border-white/[0.08] flex items-center justify-center group-hover:border-[#9a7d4a]/50 group-hover:text-[#9a7d4a] text-white/20 transition-all mt-1">
-              <ArrowUpRight className="w-4 h-4" />
-            </div>
-          )}
-        </div>
-      </div>
-    </Wrapper>
-  )
-})}
+                  <div className="flex items-start justify-between gap-3">
+                    <div>
+                      <h3 className="font-serif text-xl font-normal text-white mb-2 group-hover:text-[#c4a46b] transition-colors">
+                        {p.titulo}
+                      </h3>
+                      <p className="text-[13px] leading-[1.8] text-white/40">
+                        {p.desc}
+                      </p>
+                    </div>
+                    {/* Ícone de link — só aparece se tiver URL */}
+                    {p.link && (
+                      <div className="shrink-0 w-8 h-8 border border-white/8 flex items-center justify-center group-hover:border-[#9a7d4a]/50 group-hover:text-[#9a7d4a] text-white/20 transition-all mt-1">
+                        <ArrowUpRight className="w-4 h-4" />
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </Wrapper>
+            );
+          })}
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 // ── HABILIDADES ──
